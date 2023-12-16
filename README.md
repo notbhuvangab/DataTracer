@@ -34,111 +34,15 @@ The DataTracer library is prepared to work using datasets, which are a collectio
 loaded as `pandas.DataFrames` and a MetaData JSON which provides information about the
 dataset structure.
 
-You can find more information about the MetaData format in the [MetaData repository](
-https://github.com/signals-dev/MetaData).
 
-The DataTracer also includes a few [demo datasets](datatracer/datasets) which you can easily
-download to your computer using the `datatracer.get_demo_data` function:
+Then run app.py using 
 
-```python3
-from datatracer import get_demo_data
-
-get_demo_data()
+```bash
+python -m edifice app.py app 
 ```
 
-This will create a folder called `datatracer_demo` in your working directory with a few
-datasets ready to use inside it.
+It should show up visualization of posts dataset, identifying its primary,foreign keys and column mappings.
+The UI wrapper used is pyedifice.
 
-# Quickstart
-
-In this short tutorial we will guide you through a series of steps that will help you
-getting started with **Data Tracer**.
-
-## Load data
-
-The first step will be to load the data in the format expected by DataTracer.
-
-For this, we can use the `datatracer.load_dataset`  function passing the path to
-the dataset folder.
-
-For example, if we want to use the `classicmodels` dataset included in the demo folder
-that we just created we can load it using:
-
-```python3
-from datatracer import load_dataset
-
-metadata, tables = load_dataset('datatracer_demo/classicmodels')
-```
-
-This will return a tuple which contains:
-
-* A `MetaData` instance with details about the dataset.
-* A `dict` with all the tables of the dataset loaded as a `pandas.DataFrame`.
-
-## Select a Solver
-
-In the DataTracer project, the different Data Lineage problems are solved using what we
-call _solvers_.
-
-We can see the list of available solvers using the `get_solvers` function:
-
-```python3
-from datatracer import get_solvers
-
-get_solvers()
-```
-
-which will return a list with their names:
-
-```
-['datatracer.column_map',
- 'datatracer.foreign_key.basic',
- 'datatracer.foreign_key.standard',
- 'datatracer.primary_key.basic']
-```
-
-## Use a DataTracer instance to find table relationships
-
-In order to use the selected solver you will need to load it using the `DataTracer` class.
-
-In this example, we will try to figure out the relationships between the tables in our dataset
-by using the solver `datatracer.foreign_key.standard`.
-
-```python3
-from datatracer import DataTracer
-
-# Load the Solver
-solver = DataTracer.load('datatracer.foreign_key.standard')
-
-# Solve the Data Lineage problem
-foreign_keys = solver.solve(tables)
-```
-
-The result will be a dictionary containing the foreign key candidates:
-
-```
-[{'table': 'products',
-  'field': 'productLine',
-  'ref_table': 'productlines',
-  'ref_field': 'productLine'},
- {'table': 'payments',
-  'field': 'customerNumber',
-  'ref_table': 'customers',
-  'ref_field': 'customerNumber'},
- {'table': 'orders',
-  'field': 'customerNumber',
-  'ref_table': 'customers',
-  'ref_field': 'customerNumber'},
- {'table': 'orderdetails',
-  'field': 'productCode',
-  'ref_table': 'products',
-  'ref_field': 'productCode'},
- {'table': 'orderdetails',
-  'field': 'orderNumber',
-  'ref_table': 'orders',
-  'ref_field': 'orderNumber'},
- {'table': 'employees',
-  'field': 'officeCode',
-  'ref_table': 'offices',
-  'ref_field': 'officeCode'}]
-```
+-Bhuvan Gabbita
+-Lokesh Menga
