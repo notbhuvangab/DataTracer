@@ -51,13 +51,7 @@ class StandardForeignKeySolver(ForeignKeySolver):
         ]
 
     def fit(self, list_of_databases):
-        """Fit this solver.
 
-        Args:
-            list_of_databases (list):
-                List of tuples containing ``MetaData`` instnces and table dictinaries,
-                which contain table names as input and ``pandas.DataFrames`` as values.
-        """
         X, y = [], []
         for metadata, tables in tqdm(list_of_databases, "extracting features"):
             fks = set()
@@ -82,22 +76,7 @@ class StandardForeignKeySolver(ForeignKeySolver):
         self.model.fit(X, y)
 
     def solve(self, tables, primary_keys=None):
-        """Solve the foreign key detection problem.
 
-        The output is a list of foreign key specifications, in order from the most likely
-        to the least likely.
-
-        Args:
-            tables (dict):
-                Dict containing table names as input and ``pandas.DataFrames``
-                as values.
-            primary_keys (dict):
-                (Ignored). This particular implementation does not use this argument.
-
-        Returns:
-            dict:
-                List of foreign key specifications, sorted by likelyhood.
-        """
         X, foreign_keys = [], []
         for t1, t2 in permutations(tables.keys(), r=2):
             for c1 in tables[t1].columns:

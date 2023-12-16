@@ -12,7 +12,7 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'pandas>=0.23.4,<0.25',
+    'pandas>=1.23.4,<0.25',
     'scikit-learn>=0.20.0,<0.21',
     'numpy<1.17,>=1.15.2',
     'mlblocks==0.3.4',
@@ -20,7 +20,6 @@ install_requires = [
     'falcon>=2.0.0,<3',
     'hug>=2.6.1,<3',
     'pyyaml>=5.3.1,<6',
-    'tqdm>=4.46.1,<5',
 ]
 
 setup_requires = [
@@ -43,7 +42,6 @@ development_requires = [
     # docs
     'm2r>=0.2.0,<0.3',
     'nbsphinx>=0.5.0,<0.7',
-    'Sphinx>=1.7.1,<3',
     'sphinx_rtd_theme>=0.2.4,<0.5',
     'autodocsumm>=0.1.10',
 

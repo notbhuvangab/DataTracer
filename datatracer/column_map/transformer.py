@@ -4,29 +4,12 @@ import numpy as np
 class Transformer:
 
     def __init__(self, tables, foreign_keys):
-        """
-        The `Transformer` class provides an interface between the database and
-        the column mapping solver.
-
-        For example, during the forwards pass, it could take a date field and
-        transform into three columns - day, month, and year - which will allow
-        the solver to potentially identify the lineage of some target column.
-
-        Then, during the backwards pass, it can take the scores produced by the
-        solver (i.e. the solver assigns scores indicating how important the day,
-        month, and year columns are to predicting the target column) and combine
-        them into a single score for the `date` field.
-        """
+   
         self.tables = tables
         self.foreign_keys = foreign_keys
 
     def forward(self, table, field):
-        """
-        This function returns a (X, y) tuple containing numerical values which
-        is suitable for machine learning libraries. The `X` array contains
-        data from columns that are potentially related to the target field. The
-        `y` array contains the values of the target field.
-        """
+
         df = self.tables[table]
         df = df.select_dtypes("number")
         df = df.fillna(0.0)
@@ -47,9 +30,7 @@ class Transformer:
         return X, y
 
     def _get_counts(self, table):
-        """
-        Get the foreign keys where the given table is the parent.
-        """
+  
         X, columns = [], []
         for fk in self.foreign_keys:
             if fk["ref_table"] != table:
@@ -72,9 +53,7 @@ class Transformer:
         return np.array(X).transpose(), columns
 
     def _get_aggregations(self, table):
-        """
-        Get the foreign keys where the given table is the parent.
-        """
+
         X, columns = [], []
         for fk in self.foreign_keys:
             if fk["ref_table"] != table:
@@ -109,11 +88,7 @@ class Transformer:
         return np.array(X).transpose(), columns
 
     def backward(self, feature_importances):
-        """
-        This function takes an array of `feature_importances` which corresponds
-        to the `X` matrix produced by the last call to `forward`. It returns a
-        mapping from fields to importance scores.
-        """
+  
         obj = {}
         for column, importance in zip(self.columns, feature_importances):
             obj[column] = importance

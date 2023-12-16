@@ -2,7 +2,6 @@ import argparse
 import json
 import logging
 import sys
-
 import hug
 import yaml
 

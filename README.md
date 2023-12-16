@@ -1,21 +1,9 @@
-<p align="left">
-<img width=15% src="https://dai.lids.mit.edu/wp-content/uploads/2018/06/Logo_DAI_highres.png" alt=“DAI-Lab” />
-<i>An open source project from Data to AI Lab at MIT.</i>
-</p>
-
-[![Development Status](https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow)](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
-[![PyPI Shield](https://img.shields.io/pypi/v/datatracer.svg)](https://pypi.python.org/pypi/datatracer)
-[![Downloads](https://pepy.tech/badge/datatracer)](https://pepy.tech/project/datatracer)
-[![Run Tests](https://github.com/data-dev/DataTracer/workflows/Run%20Tests/badge.svg)](https://github.com/data-dev/DataTracer/actions)
 
 # DataTracer
 
 Data Lineage Tracing Library
 
 * License: [MIT](https://github.com/data-dev/DataTracer/blob/master/LICENSE)
-* Development Status: [Pre-Alpha](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
-* Homepage: https://github.com/data-dev/DataTracer
-
 ## Overview
 
 DataTracer is a Python library for solving Data Lineage problems using statistical
@@ -28,20 +16,8 @@ Currently the Data Tracer library implements discovery of the following properti
 * **Column Mapping**: Given a field in a table, deduce which other fields, from the same table
   or other tables, are more related or contributed the most in generating the given field.
 
-### REST API
-
-The DataTracer library also incorporates a REST API that enables interaction with the DataTracer
-Solvers via HTTP communication. You can check it [here](rest)
-
-# Install
-
-## Requirements
 
 **DataTracer** has been developed and tested on [Python 3.5 and 3.6, 3.7](https://www.python.org/downloads/)
-
-Also, although it is not strictly required, the usage of a [virtualenv](
-https://virtualenv.pypa.io/en/latest/) is highly recommended in order to avoid
-interfering with other software installed in the system where **DataTracer** is run.
 
 ## Install with pip
 
@@ -51,12 +27,6 @@ https://pip.pypa.io/en/stable/):
 ```bash
 pip install datatracer
 ```
-
-This will pull and install the latest stable release from [PyPi](https://pypi.org/).
-
-If you want to install from source or contribute to the project please read the
-[Contributing Guide](https://hdi-project.github.io/DataTracer/contributing.html#get-started).
-
 
 # Data Format: Datasets and Metadata
 
@@ -172,9 +142,3 @@ The result will be a dictionary containing the foreign key candidates:
   'ref_table': 'offices',
   'ref_field': 'officeCode'}]
 ```
-
-# What's next?
-
-You can learn more about the DataTracer features in the [notebook tutorials](tutorials).
-
-Also don't forget to have a look at the DataTracer [REST API](rest).

@@ -1,4 +1,4 @@
-"""Basic Foreign Key Solver module."""
+
 
 from itertools import permutations
 
@@ -23,22 +23,7 @@ class BasicForeignKeySolver(ForeignKeySolver):
         return 0.0
 
     def solve(self, tables, primary_keys=None):
-        """Solve the foreign key detection problem.
 
-        The output is a list of foreign key specifications, in order from the most likely
-        to the least likely.
-
-        Args:
-            tables (dict):
-                Dict containing table names as input and ``pandas.DataFrames``
-                as values.
-            primary_keys (dict):
-                (Ignored). This particular implementation does not use this argument.
-
-        Returns:
-            dict:
-                List of foreign key specifications, sorted by likelyhood.
-        """
         foreign_keys = []
         for t1, t2 in tqdm(list(permutations(tables.keys(), r=2))):
             for c1 in tables[t1].columns:
